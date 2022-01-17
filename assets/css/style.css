@@ -1,0 +1,130 @@
+:root {
+  --primary-color: #584d3d;
+  --secondary-color: #b1c1c0;
+  --tertiary-color: #dcedb9;
+  --quaternary-color: #d2e59e;
+  --senary-color: #cbd080;
+  --septenary-color: #ff6f59;
+  --octonary-color: #20fc8f;
+  /* #7d70ba; */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--secondary-color);
+  background-color: var(--quaternary-color);
+  font-family: Georgia, Helvetica, Times New Roman, Arial, sans-serif;
+}
+
+header {
+  background-color: var(--primary-color);
+}
+
+.header-parent {
+  max-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highscore-timer-parent {
+  max-width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: .5vw 1.5vw;
+  list-style: none;
+}
+
+.container {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border-radius: 1000px;
+  padding: 10px;
+}
+
+.container h1 {
+    text-align: center;
+}
+
+.container a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.container:hover {
+  background: white;
+}
+
+.header {
+}
+
+.highscores {
+}
+
+.timer {
+}
+
+.question {
+  background-color: var(--tertiary-color);
+}
+
+.question-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question-container {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-style: none;
+  text-decoration: none;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 1000px;
+  padding: 10px;
+  margin: 5%;
+}
+
+.question-container:hover {
+  background-color: white;
+}
+
+.emphasis {
+  font-weight: bold;
+  color: var(--septenary-color);
+}
+
+.answer {
+  background-color: var(--quaternary-color);
+}
+
+.answer-parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: space-around;
+  flex-wrap: wrap;
+}
+
+.answer-container {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-style: none;
+  text-decoration: none;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 1000px;
+  padding: 10px;
+  margin: 5%;
+}
+
+.answer-container:hover {
+  background-color: white;
+}
