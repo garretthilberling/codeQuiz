@@ -6,7 +6,6 @@
   --senary-color: #cbd080;
   --septenary-color: #ff6f59;
   --octonary-color: #20fc8f;
-  /* #7d70ba; */
 }
 
 * {
@@ -38,7 +37,7 @@ header {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin: .5vw 1.5vw;
+  margin: 0.5vw 1.5vw;
   list-style: none;
 }
 
@@ -50,7 +49,7 @@ header {
 }
 
 .container h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .container a {
@@ -60,12 +59,6 @@ header {
 
 .container:hover {
   background: white;
-}
-
-.header {
-}
-
-.highscores {
 }
 
 .timer {
@@ -79,6 +72,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0.5vw 1.5vw;
 }
 
 .question-container {
@@ -110,8 +104,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: space-around;
+  margin: 0.5vw 1.5vw;
   flex-wrap: wrap;
 }
+
+
 
 .answer-container {
   background-color: var(--secondary-color);
@@ -127,4 +124,29 @@ header {
 
 .answer-container:hover {
   background-color: white;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5vw 1.5vw;
+}
+
+.result p {
+    color: var(--octonary-color);
+    font-size: 24px;
+    font-weight: bold;
+    background: var(--primary-color);
+    border-radius: 1000px;
+    padding: 10px;
+    /* text-shadow: 0 0 10px rgb(88, 77, 61, 0.5); */
+}
+
+.correct {
+    color: var(--octonary-color);
+}
+
+.incorrect {
+    color: var(--septenary-color);
 }
