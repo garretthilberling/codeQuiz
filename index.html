@@ -14,26 +14,49 @@
           <h1>Test Your Coding Knowledge!</h1>
         </div>
       </div>
-      <ul class="highscore-timer-parent">
-        <li class="container high-scores">
-          <a href="">View high scores</a>
-        </li>
-
-        <li class="container timer">Time:</li>
-      </ul>
     </header>
     <section class="question">
       <div class="question-parent">
         <div class="question-container">
-          Try to answer these code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+          <ul class="highscore-timer-parent">
+            <li class="container high-scores">
+              <a href="">View high scores</a>
+            </li>
+
+            <li class="container timer">Time:</li>
+          </ul>
+          Try to answer these code-related questions within the time limit. Keep
+          in mind that incorrect answers will penalize your score/time by ten
+          seconds!
+          <form id="username-form" onsubmit="return false">
+            <span>
+              <label for="playerName" class="enter-username"
+                >Enter your username:</label
+              ><br />
+              <span>
+                <button type="button" name="generate-name" id="generate-name">generate</button>
+              </span>
+              <input
+                class="form-input"
+                type="text"
+                name="username"
+                placeholder="username"
+                id="username"
+              />
+            </span>
+            <span>
+              <button type="submit" name="submit" id="submit" >submit</button>
+            </span>
+          </form>
         </div>
       </div>
     </section>
 
     <section class="answer">
       <div class="answer-parent">
-        <button class="answer-container">Start Quiz</button>
+        <button class="answer-container" id="start-quiz">Start Quiz</button>
       </div>
     </section>
+    <script src="./assets/javascript/script.js"></script>
   </body>
 </html>
