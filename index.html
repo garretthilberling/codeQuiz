@@ -25,16 +25,21 @@
 
             <li class="container timer">Time:</li>
           </ul>
-          Try to answer these code-related questions within the time limit. Keep
-          in mind that incorrect answers will penalize your score/time by ten
-          seconds!
+          <span id="question">
+          <p>
+            Try to answer these code-related questions within the time limit.
+            Keep in mind that incorrect answers will penalize your score/time by
+            ten seconds!
+          </p>
           <form id="username-form" onsubmit="return false">
             <span>
               <label for="playerName" class="enter-username"
                 >Enter your username:</label
               ><br />
               <span>
-                <button type="button" name="generate-name" id="generate-name">generate</button>
+                <button type="button" name="generate-name" id="generate-name">
+                  generate
+                </button>
               </span>
               <input
                 class="form-input"
@@ -45,14 +50,15 @@
               />
             </span>
             <span>
-              <button type="submit" name="submit" id="submit" >submit</button>
+              <button type="submit" name="submit" id="submit">submit</button>
             </span>
           </form>
+        </span>
         </div>
       </div>
     </section>
 
-    <section class="answer">
+    <section id="answer" class="answer">
       <div class="answer-parent">
         <button class="answer-container" id="start-quiz">Start Quiz</button>
       </div>

@@ -146,32 +146,11 @@ var nameNumberArray = [
 ];
 var nameFinalArray = []; //other arrays will be push into this array randomly, generating username
 
-var userName = 
-
-// (generateName === undefined) ? 
-// if (generateName) {
-//   generatedName
-// } else {
-//   createdName
-// };
+var userName = ""; //will be replaced by the username input or by the name made by the generate button if it is accepted.
 
 var formEl = document.querySelector("#username-form");
 
-var nameFormHandler = function(event) {
-  event.preventDefault();
-  var nameInput = document.querySelector("input[name='username']").value;
-  if (!nameInput) {
-    alert("You need to provide a valid name!");
-    return false;
-  } 
-
-  formEl.reset();
-
-  var nameDataObj = {
-    name: nameInput,
-    gender: genderInput,
-  };
-};
+var nameFormHandler = function (event) {};
 
 // nameFormHandler();
 
@@ -183,30 +162,49 @@ var generateName = function (event) {
   var randomNumber =
     nameNumberArray[Math.floor(Math.random() * nameNumberArray.length)];
   generatedName = randomColor + "-" + randomWord + "-" + randomNumber;
-  // console.log(userName);
   var randomNameConfirm = window.confirm(
     "Store username as " + "'" + generatedName + "'" + "?"
   );
   if (randomNameConfirm === true) {
-    globalThis.generatedName
+    userName = generatedName;
+    var successMessage = getElementById("answer")
+    var userNameSuccess = document.createElement("div");
+    userNameSuccess.className = "result"
+    userNameSuccess.innerHTML = "<p>good luck, " + userName + "!</p>"
+    console.log(userName);
+  } else {
+    return;
+  }
+};
+
+var submitName = function (event) {
+  event.preventDefault();
+  var nameInput = document.querySelector("input[name='username']").value;
+  if (!nameInput) {
+    alert("You need to provide a valid name!");
+    return false;
+  }
+  var nameConfirm = confirm("Store username as " + "'" + nameInput + "'" + "?");
+  if (nameConfirm === true) {
+    userName = nameInput;
+    console.log(userName);
   } else {
     return;
   }
 
-  var targetEl = event.target;
-  // document.querySelector("#username").innerHTML = newUserName;
+  formEl.reset();
+
+  var nameDataObj = {
+    name: nameInput,
+  };
 };
 
-
-
-console.log(userName);
-
-var submitName = function (event) {
-  userName.push(inputName);
-  console.log(userName);
+var startQuiz = function (event) {
+  var firstPage = document.getElementById("question");
+  firstPage.remove();
+  // var questionOne = document.createElement("span");
+  // questionOne.innerHTML = "<p>Good luck, " + userName + "!";
 };
-
-var startQuiz = function (event) {};
 
 generateBtn.addEventListener("click", generateName);
 
