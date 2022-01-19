@@ -6,6 +6,10 @@ var inputName = document.querySelector("#username");
 
 var startQuizBtn = document.querySelector("#start-quiz");
 
+var questionSection = document.querySelector("#insert-question");
+
+var answerSection = document.querySelector("#answer");
+
 var nameWordArray = [
   "leaf",
   "skeleton",
@@ -144,7 +148,6 @@ var nameNumberArray = [
   "98",
   "99",
 ];
-var nameFinalArray = []; //other arrays will be push into this array randomly, generating username
 
 var userName = ""; //will be replaced by the username input or by the name made by the generate button if it is accepted.
 
@@ -154,7 +157,7 @@ var nameFormHandler = function (event) {};
 
 // nameFormHandler();
 
-var generateName = function (event) {
+var generateName = function (e) {
   var randomWord =
     nameWordArray[Math.floor(Math.random() * nameWordArray.length)];
   var randomColor =
@@ -167,18 +170,32 @@ var generateName = function (event) {
   );
   if (randomNameConfirm === true) {
     userName = generatedName;
-    var successMessage = getElementById("answer")
-    var userNameSuccess = document.createElement("div");
-    userNameSuccess.className = "result"
-    userNameSuccess.innerHTML = "<p>good luck, " + userName + "!</p>"
+    goodLuckMessage();
     console.log(userName);
   } else {
     return;
   }
 };
 
-var submitName = function (event) {
-  event.preventDefault();
+var goodLuckMessage = function () {
+  const goodLuckText = document.createElement("div");
+  goodLuckText.className = "answer-parent result";
+  goodLuckText.innerHTML = "<p>good luck, " + userName + "!</p>";
+  goodLuckText.setAttribute("id", "good-luck");
+  answerSection.appendChild(goodLuckText);
+  var fade = setInterval(function () {
+    if (!goodLuckText.style.opacity) {
+      $("#good-luck").fadeOut(8000, function () {
+        $(this).remove();
+      });
+    } else {
+      clearInterval(fade);
+    }
+  });
+};
+
+var submitName = function (e) {
+  e.preventDefault();
   var nameInput = document.querySelector("input[name='username']").value;
   if (!nameInput) {
     alert("You need to provide a valid name!");
@@ -187,6 +204,7 @@ var submitName = function (event) {
   var nameConfirm = confirm("Store username as " + "'" + nameInput + "'" + "?");
   if (nameConfirm === true) {
     userName = nameInput;
+    goodLuckMessage();
     console.log(userName);
   } else {
     return;
@@ -199,9 +217,23 @@ var submitName = function (event) {
   };
 };
 
-var startQuiz = function (event) {
+var startQuiz = function (e) {
+  if (generateName === false || submitName === false) {
+    window.alert("You need to provide a valid name to proceed!");
+  }
   var firstPage = document.getElementById("question");
   firstPage.remove();
+  var deleteGoodLuck = document.getElementById("good-luck");
+  var deleteForm = document.getElementById("username-form");
+
+  deleteGoodLuck.remove();
+  deleteForm.remove();
+  startQuizBtn.remove();
+
+  const questionOne = document.createElement("span");
+  questionOne.setAttribute("id", "question");
+  questionOne.innerHTML = "<p>In CSS, what does '!important' do?</p>";
+  questionSection.appendChild(questionOne);
   // var questionOne = document.createElement("span");
   // questionOne.innerHTML = "<p>Good luck, " + userName + "!";
 };

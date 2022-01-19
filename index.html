@@ -25,44 +25,53 @@
 
             <li class="container timer">Time:</li>
           </ul>
-          <span id="question">
-          <p>
-            Try to answer these code-related questions within the time limit.
-            Keep in mind that incorrect answers will penalize your score/time by
-            ten seconds!
-          </p>
-          <form id="username-form" onsubmit="return false">
-            <span>
-              <label for="playerName" class="enter-username"
-                >Enter your username:</label
-              ><br />
+          <span id="insert-question">
+            <p id="question">
+              Try to answer these code-related questions within the time limit.
+              Keep in mind that incorrect answers will penalize your score/time
+              by ten seconds!
+            </p>
+            <form id="username-form" onsubmit="return false">
               <span>
-                <button type="button" name="generate-name" id="generate-name">
-                  generate
-                </button>
+                <label for="playerName" class="enter-username"
+                  >Enter your username:</label
+                ><br />
+                <span>
+                  <button
+                    class="btn-primary"
+                    type="button"
+                    name="generate-name"
+                    id="generate-name"
+                  >
+                    generate
+                  </button>
+                </span>
+                <input
+                  class="form-input"
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  id="username"
+                />
               </span>
-              <input
-                class="form-input"
-                type="text"
-                name="username"
-                placeholder="username"
-                id="username"
-              />
-            </span>
-            <span>
-              <button type="submit" name="submit" id="submit">submit</button>
-            </span>
-          </form>
-        </span>
+              <span>
+                <button type="submit" name="submit" id="submit">submit</button>
+              </span>
+            </form>
+          </span>
         </div>
       </div>
     </section>
 
-    <section id="answer" class="answer">
+    <section name="answer" id="answer" class="answer">
       <div class="answer-parent">
         <button class="answer-container" id="start-quiz">Start Quiz</button>
       </div>
+      <!-- <div class="answer-parent result">
+        <p>good luck!</p>
+      </div> -->
     </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/javascript/script.js"></script>
   </body>
 </html>
