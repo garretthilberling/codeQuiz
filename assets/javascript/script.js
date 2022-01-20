@@ -12,6 +12,10 @@ var answerSection = document.querySelector("#answer");
 
 var timerSection = document.querySelector("#timer");
 
+// var proceed = document.querySelector(
+//   "#answer-1, #answer-2, #answer-3, #answer-4"
+// );
+
 var nameWordArray = [
   "leaf",
   "skeleton",
@@ -229,8 +233,7 @@ var startTimer = function () {
     var t = element.innerHTML;
     if (t > 0) {
       element.innerHTML = parseInt(t) - 1;
-    }
-    else {
+    } else {
       element.innerHTML = 0;
     }
     window.t = t;
@@ -294,132 +297,141 @@ var startQuiz = function (e) {
 
   const questionOne = document.createElement("span");
   questionOne.setAttribute("id", "question");
-  questionOne.innerHTML = "<p>In CSS, what does '!important' do?</p>";
+  questionOne.innerHTML = "<p>1. Commonly used data types do <span class='emphasis'>NOT</span> include:</p>";
   questionSection.appendChild(questionOne);
+  window.questionOne = questionOne;
 
   const questionOneAnswers = document.createElement("span");
   questionOneAnswers.setAttribute("id", "answer");
   questionOneAnswers.innerHTML =
-    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D</button></div>';
+    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. Strings</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B. Booleans</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C. Alerts</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D. Numbers</button></div>';
   answerSection.appendChild(questionOneAnswers);
+  window.questionOneAnswers = questionOneAnswers;
 
   var questionOneCorrect = document.querySelector("#answer-3");
   var questionOneIncorrect = document.querySelector(
     "#answer-1, #answer-2, #answer-4"
   );
-  var proceed = document.querySelector(
-    "#answer-1, #answer-2, #answer-3, #answer-4"
-  );
 
   questionOneCorrect.addEventListener("click", correctAnswer);
+  questionOneCorrect.addEventListener("click", questionTwoStart);
   questionOneIncorrect.addEventListener("click", incorrectAnswer);
-
-  var questionTwo = function () {
-    questionOne.remove();
-    questionOneAnswers.remove();
-    const questionTwo = document.createElement("span");
-
-    questionTwo.setAttribute("id", "question");
-    questionTwo.innerHTML = "<p>Question 2</p>";
-    questionSection.appendChild(questionTwo);
-
-    const questionTwoAnswers = document.createElement("span");
-    questionTwoAnswers.setAttribute("id", "answer");
-    questionTwoAnswers.innerHTML =
-      '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D</button></div>';
-    answerSection.appendChild(questionTwoAnswers);
-
-    var questionTwoCorrect = document.querySelector("#answer-1");
-    var questionTwoIncorrect = document.querySelector(
-      "#answer-2, #answer-3, #answer-4"
-    );
-    var proceed2 = document.querySelector(
-      "#answer-1, #answer-2, #answer-3, #answer-4"
-    );
-    // globalThis.proceed2
-
-    questionTwoCorrect.addEventListener("click", correctAnswer);
-    questionTwoIncorrect.addEventListener("click", incorrectAnswer);
-  };
-  var questionThree = function () {
-    document.querySelector("#question").remove();
-    document.querySelector("#answer").remove();
-    const questionThree = document.createElement("span");
-
-    questionThree.setAttribute("id", "question");
-    questionThree.innerHTML = "<p>Question 2</p>";
-    questionSection.appendChild(questionThree);
-
-    const questionThreeAnswers = document.createElement("span");
-    questionThreeAnswers.setAttribute("id", "answer");
-    questionThreeAnswers.innerHTML =
-      '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D</button></div>';
-    answerSection.appendChild(questionThreeAnswers);
-
-    var questionThreeCorrect = document.querySelector("#answer-4");
-    var questionThreeIncorrect = document.querySelector(
-      "#answer-1, #answer-2, #answer-3"
-    );
-
-    questionThreeCorrect.addEventListener("click", correctAnswer);
-    questionThreeIncorrect.addEventListener("click", incorrectAnswer);
-  };
-  var questionFour = function () {
-    document.querySelector("#question").remove();
-    document.querySelector("#answer").remove();
-    const questionFour = document.createElement("span");
-
-    questionFour.setAttribute("id", "question");
-    questionFour.innerHTML = "<p>Question 2</p>";
-    questionSection.appendChild(questionFour);
-
-    const questionFourAnswers = document.createElement("span");
-    questionFourAnswers.setAttribute("id", "answer");
-    questionFourAnswers.innerHTML =
-      '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D</button></div>';
-    answerSection.appendChild(questionFourAnswers);
-
-    var questionFourCorrect = document.querySelector("#answer-2");
-    var questionFourIncorrect = document.querySelector(
-      "#answer-1, #answer-3, #answer-4"
-    );
-
-    questionFourCorrect.addEventListener("click", correctAnswer);
-    questionFourIncorrect.addEventListener("click", incorrectAnswer);
-  };
-  // proceed.addEventListener("click", questionTwo);
-  // proceed2.addEventListener("click", questionThree);
-  // proceed.addEventListener("click", questionFour);
-  // proceed4.addEventListener("click", questionFive);
-  // proceed5.addEventListener("click", questionSix);
-  // proceed6.addEventListener("click", questionSeven);
-  // proceed7.addEventListener("click", questionEight);
-  // proceed8.addEventListener("click", questionNine);
-  // proceed9.addEventListener("click", questionTen);
-
-  // if (answerOneBtn) {
-  //   answerOneBtn.addEventListener("click", modifyText, true);
-  // }
-  // if (answerTwoBtn) {
-  //   answerTwoBtn.addEventListener("click", modifyText, true);
-  // }
-  // if (answerThreeBtn) {
-  //   answerThreeBtn.addEventListener("click", modifyText, true);
-  // }
-  // if (answerFourBtn) {
-  //   answerOneBtn.addEventListener("click", modifyText, true);
-  // }
-
-  // if (answerThreeBtn === true) {
-  //   correctAnswer();
-  // } else if (
-  //   answerOneBtn === true ||
-  //   answerTwoBtn === true ||
-  //   answerFourBtn === true
-  // ) {
-  //   incorrectAnswer();
-  // }
+  questionOneIncorrect.addEventListener("click", questionTwoStart);
 };
+
+var questionTwoStart = function (e) {
+  questionOne.remove();
+  questionOneAnswers.remove();
+  const questionTwo = document.createElement("span");
+
+  questionTwo.setAttribute("id", "question");
+  questionTwo.innerHTML = "<p>2. The condition of an if / else statement is enclosed with ____________.</p>";
+  questionSection.appendChild(questionTwo);
+  window.questionTwo = questionTwo;
+
+  const questionTwoAnswers = document.createElement("span");
+  questionTwoAnswers.setAttribute("id", "answer");
+  questionTwoAnswers.innerHTML =
+    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. Parenthesis</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B. Quotes</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C. Curly brackets</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D. Square Brackets</button></div>';
+  answerSection.appendChild(questionTwoAnswers);
+  window.questionTwoAnswers = questionTwoAnswers;
+
+  var questionTwoCorrect = document.querySelector("#answer-1");
+  var questionTwoIncorrect = document.querySelector(
+    "#answer-2, #answer-3, #answer-4"
+  );
+
+  questionTwoCorrect.addEventListener("click", correctAnswer);
+  questionTwoCorrect.addEventListener("click", questionThreeStart);
+  questionTwoIncorrect.addEventListener("click", incorrectAnswer);
+  questionTwoCorrect.addEventListener("click", questionThreeStart);
+};
+var questionThreeStart = function (e) {
+  questionTwo.remove();
+  questionTwoAnswers.remove();
+  const questionThree = document.createElement("span");
+
+  questionThree.setAttribute("id", "question");
+  questionThree.innerHTML = "<p>3. Arrays in JavaScript can be used to store _________.</p>";
+  questionSection.appendChild(questionThree);
+  window.questionThree = questionThree;
+
+  const questionThreeAnswers = document.createElement("span");
+  questionThreeAnswers.setAttribute("id", "answer");
+  questionThreeAnswers.innerHTML =
+    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. Numbers and strings</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B. Other arrays</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C. Booleans</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D. All of the above!</button></div>';
+  answerSection.appendChild(questionThreeAnswers);
+  window.questionThreeAnswers = questionThreeAnswers;
+
+  var questionThreeCorrect = document.querySelector("#answer-4");
+  var questionThreeIncorrect = document.querySelector(
+    "#answer-1, #answer-2, #answer-3"
+  );
+
+  questionThreeCorrect.addEventListener("click", correctAnswer);
+  questionThreeCorrect.addEventListener("click", questionFourStart);
+  questionThreeIncorrect.addEventListener("click", incorrectAnswer);
+  questionThreeIncorrect.addEventListener("click", questionFourStart);
+};
+var questionFourStart = function (e) {
+  questionThree.remove();
+  questionThreeAnswers.remove();
+  const questionFour = document.createElement("span");
+
+  questionFour.setAttribute("id", "question");
+  questionFour.innerHTML = "<p>4. String values must be enclosed within __________ when being assigned to variables.</p>";
+  questionSection.appendChild(questionFour);
+  window.questionFour = questionFour;
+
+  const questionFourAnswers = document.createElement("span");
+  questionFourAnswers.setAttribute("id", "answer");
+  questionFourAnswers.innerHTML =
+    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. Commas</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B. Quotes</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C. Parenthesis</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D. Curly brackets</button></div>';
+  answerSection.appendChild(questionFourAnswers);
+  window.questionFourAnswers = questionFourAnswers;
+
+  var questionFourCorrect = document.querySelector("#answer-4");
+  var questionFourIncorrect = document.querySelector(
+    "#answer-1, #answer-2, #answer-3"
+  );
+
+  questionFourCorrect.addEventListener("click", correctAnswer);
+  questionFourCorrect.addEventListener("click", questionFiveStart);
+  questionFourIncorrect.addEventListener("click", incorrectAnswer);
+  questionFourIncorrect.addEventListener("click", questionFiveStart);
+};
+var questionFiveStart = function (e) {
+  questionFour.remove();
+  questionFourAnswers.remove();
+  const questionFive = document.createElement("span");
+
+  questionFive.setAttribute("id", "question");
+  questionFive.innerHTML = "<p>5. A very useful tool used during development and debugging for printing content to the debugger is:</p>";
+  questionSection.appendChild(questionFive);
+  window.questionFive = questionFive;
+
+  const questionFiveAnswers = document.createElement("span");
+  questionFiveAnswers.setAttribute("id", "answer");
+  questionFiveAnswers.innerHTML =
+    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. JavaScript</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B. Terminal/bash</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C. For loops</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D. Console log</button></div>';
+  answerSection.appendChild(questionFiveAnswers);
+  window.questionFiveAnswers = questionFiveAnswers;
+
+  var questionFiveCorrect = document.querySelector("#answer-4");
+  var questionFiveIncorrect = document.querySelector(
+    "#answer-1, #answer-2, #answer-3"
+  );
+
+  questionFiveCorrect.addEventListener("click", correctAnswer);
+  // questionFiveCorrect.addEventListener("click", endQuiz);
+  questionFiveIncorrect.addEventListener("click", incorrectAnswer);
+  // questionFiveIncorrect.addEventListener("click", endQuiz);
+};
+
+var endQuiz = function() {
+  t = t;
+
+}
 
 generateBtn.addEventListener("click", generateName);
 
@@ -428,3 +440,11 @@ submitBtn.addEventListener("click", submitName);
 startQuizBtn.addEventListener("click", startQuiz);
 
 
+// 
+// 
+// proceed.addEventListener("click", questionFive);
+// proceed.addEventListener("click", questionSix);
+// proceed.addEventListener("click", questionSeven);
+// proceed.addEventListener("click", questionEight);
+// proceed.addEventListener("click", questionNine);
+// proceed.addEventListener("click", questionTen);
