@@ -223,16 +223,13 @@ var submitName = function (e) {
 var startTimer = function () {
   var timeText = document.querySelector("#timer");
   timeText.innerHTML = "120";
-  var countdown = setInterval(displayTimer, 1000, timeText);
+  var countDown = setInterval(displayTimer, 1000, timeText);
 
   function displayTimer(element) {
     var t = element.innerHTML;
     if (t > 0) {
       element.innerHTML = parseInt(t) - 1;
-    } 
-    // else if (incorrectAnswer === true) {
-    //   element.innerHTML = parseInt(t) - 10;
-    // } 
+    }
     else {
       element.innerHTML = 0;
     }
@@ -283,6 +280,8 @@ var startQuiz = function (e) {
   if (userName === "") {
     window.alert("You need to provide a valid name to proceed!");
     return false;
+  } else {
+    startTimer();
   }
   var firstPage = document.getElementById("question");
   firstPage.remove();
@@ -428,4 +427,4 @@ submitBtn.addEventListener("click", submitName);
 
 startQuizBtn.addEventListener("click", startQuiz);
 
-startQuizBtn.addEventListener("click", startTimer);
+
