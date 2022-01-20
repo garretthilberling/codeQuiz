@@ -192,7 +192,7 @@ var goodLuckMessage = function () {
   answerSection.appendChild(goodLuckText);
   var fade = setInterval(function () {
     if (!goodLuckText.style.opacity) {
-      $("#good-luck").fadeOut(4000, function () {
+      $("#good-luck").fadeOut(3000, function () {
         $(this).remove();
       });
     } else {
@@ -244,14 +244,13 @@ var startTimer = function () {
 var correctAnswer = function () {
   const correctText = document.createElement("div");
   correctText.className = "answer-parent result";
-  // correctText.firstElementChild
   correctText.innerHTML = "<p>Correct!</p>";
   correctText.setAttribute("id", "correct");
   answerSection.appendChild(correctText);
 
   var fade = setInterval(function () {
     if (!correctText.style.opacity) {
-      $("#correct").fadeOut(2000, function () {
+      $("#correct").fadeOut(500, function () {
         $(this).remove();
       });
     } else {
@@ -269,7 +268,7 @@ var incorrectAnswer = function () {
   answerSection.appendChild(incorrectText);
   var fade = setInterval(function () {
     if (!incorrectText.style.opacity) {
-      $("#incorrect").fadeOut(2000, function () {
+      $("#incorrect").fadeOut(500, function () {
         $(this).remove();
       });
     } else {
@@ -288,10 +287,8 @@ var startQuiz = function (e) {
   }
   var firstPage = document.getElementById("question");
   firstPage.remove();
-  var deleteGoodLuck = document.getElementById("good-luck");
   var deleteForm = document.getElementById("username-form");
 
-  deleteGoodLuck.remove();
   deleteForm.remove();
   startQuizBtn.remove();
 
@@ -304,7 +301,7 @@ var startQuiz = function (e) {
   const questionOneAnswers = document.createElement("span");
   questionOneAnswers.setAttribute("id", "answer");
   questionOneAnswers.innerHTML =
-    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. Strings</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B. Booleans</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C. Alerts</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D. Numbers</button></div>';
+    '<ul id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. Strings</button></li> <li><button id="answer-2" class="answer-container">B. Booleans</button></li> <li><button id="answer-3" class="answer-container">C. Alerts</button></li> <li><button id="answer-4" class="answer-container">D. Numbers</button></li></ul>';
   answerSection.appendChild(questionOneAnswers);
   window.questionOneAnswers = questionOneAnswers;
 
@@ -332,7 +329,7 @@ var questionTwoStart = function (e) {
   const questionTwoAnswers = document.createElement("span");
   questionTwoAnswers.setAttribute("id", "answer");
   questionTwoAnswers.innerHTML =
-    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. Parenthesis</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B. Quotes</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C. Curly brackets</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D. Square Brackets</button></div>';
+    '<ul id="answer-parent" class="answer-parent"><li><button id="answer-1" class="answer-container">A. Parenthesis</button></li> <li><button id="answer-2" class="answer-container">B. Quotes</button></li> <li><button id="answer-3" class="answer-container">C. Curly brackets</button></li> <li><button id="answer-4" class="answer-container">D. Square Brackets</button></li></ul>';
   answerSection.appendChild(questionTwoAnswers);
   window.questionTwoAnswers = questionTwoAnswers;
 
@@ -359,7 +356,7 @@ var questionThreeStart = function (e) {
   const questionThreeAnswers = document.createElement("span");
   questionThreeAnswers.setAttribute("id", "answer");
   questionThreeAnswers.innerHTML =
-    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. Numbers and strings</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B. Other arrays</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C. Booleans</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D. All of the above!</button></div>';
+    '<ul id="answer-parent" class="answer-parent"><li><button id="answer-1" class="answer-container">A. Numbers and strings</button></li> <li><button id="answer-2" class="answer-container">B. Other arrays</button></li> <li><button id="answer-3" class="answer-container">C. Booleans</button></li> <li><button id="answer-4" class="answer-container">D. All of the above!</button></li></ul>';
   answerSection.appendChild(questionThreeAnswers);
   window.questionThreeAnswers = questionThreeAnswers;
 
@@ -386,7 +383,7 @@ var questionFourStart = function (e) {
   const questionFourAnswers = document.createElement("span");
   questionFourAnswers.setAttribute("id", "answer");
   questionFourAnswers.innerHTML =
-    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. Commas</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B. Quotes</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C. Parenthesis</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D. Curly brackets</button></div>';
+    '<ul id="answer-parent" class="answer-parent"><li><button id="answer-1" class="answer-container">A. Commas</button></li> <li><button id="answer-2" class="answer-container">B. Quotes</button></li> <li><button id="answer-3" class="answer-container">C. Parenthesis</button></li> <li><button id="answer-4" class="answer-container">D. Curly brackets</button></li></ul>';
   answerSection.appendChild(questionFourAnswers);
   window.questionFourAnswers = questionFourAnswers;
 
@@ -413,7 +410,7 @@ var questionFiveStart = function (e) {
   const questionFiveAnswers = document.createElement("span");
   questionFiveAnswers.setAttribute("id", "answer");
   questionFiveAnswers.innerHTML =
-    '<div id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. JavaScript</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-2" class="answer-container">B. Terminal/bash</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-3" class="answer-container">C. For loops</button></div> <div id="answer-parent" class="answer-parent"><button id="answer-4" class="answer-container">D. Console log</button></div>';
+    '<ul id="answer-parent" class="answer-parent"><li><button id="answer-1" class="answer-container">A. JavaScript</button></li> <li><button id="answer-2" class="answer-container">B. Terminal/bash</button></li> <li><button id="answer-3" class="answer-container">C. For loops</button></li> <li><button id="answer-4" class="answer-container">D. Console log</button></li></ul>';
   answerSection.appendChild(questionFiveAnswers);
   window.questionFiveAnswers = questionFiveAnswers;
 
@@ -423,13 +420,15 @@ var questionFiveStart = function (e) {
   );
 
   questionFiveCorrect.addEventListener("click", correctAnswer);
-  // questionFiveCorrect.addEventListener("click", endQuiz);
+  questionFiveCorrect.addEventListener("click", endQuiz);
   questionFiveIncorrect.addEventListener("click", incorrectAnswer);
-  // questionFiveIncorrect.addEventListener("click", endQuiz);
+  questionFiveIncorrect.addEventListener("click", endQuiz);
 };
 
 var endQuiz = function() {
   t = t;
+  questionFive.remove();
+  questionFiveAnswers.remove();
 
 }
 

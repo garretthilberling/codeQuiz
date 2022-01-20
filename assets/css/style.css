@@ -1,9 +1,9 @@
 :root {
-  --primary-color: #584d3d;
-  --secondary-color: #b1c1c0;
-  --tertiary-color: #dcedb9;
-  --quaternary-color: #d2e59e;
-  --senary-color: #cbd080;
+  --primary-color: #09090c;
+  --secondary-color: #584d3d;
+  --tertiary-color: #ffffff;
+  --quaternary-color: #ffd447;
+  --senary-color: #69995d;
   --septenary-color: #ff6f59;
   --octonary-color: #20fc8f;
 }
@@ -47,6 +47,7 @@ header {
   text-align: center;
   border-radius: 10px;
   padding: 10px;
+  margin: 0.5vw;
 }
 
 .container h1 {
@@ -56,13 +57,6 @@ header {
 .container a {
   text-decoration: none;
   color: var(--primary-color);
-}
-
-.container:hover {
-  background: white;
-}
-
-.timer {
 }
 
 .question {
@@ -96,17 +90,8 @@ header {
   font-weight: bold;
 }
 
-.gender {
-  font-size: 16px;
-}
-
-.gender:hover {
-  font-size: 24px;
-}
-
 .enter-username:hover {
-  color: var(--octonary-color);
-  text-shadow: 0 0 10px rgb(88, 77, 61, .5);
+  color: var(--tertiary-color);
 }
 
 .emphasis {
@@ -119,25 +104,25 @@ header {
 }
 
 .answer-parent {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: space-around;
   margin: 0.5vw 1.5vw;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  flex: 1;
 }
 
 .answer-container {
-  background-color: var(--secondary-color);
+  background-color: var(--senary-color);
   color: var(--primary-color);
   font-style: none;
   text-decoration: none;
   text-align: center;
   font-size: 24px;
-  border-radius: 1000px;
+  border-radius: 10px;
   padding: 10px;
   margin: 5%;
+  flex: 1;
 }
 
 .answer-container:hover {
@@ -145,22 +130,44 @@ header {
 }
 
 .result {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  order: 4;
   margin: 0.5vw 1.5vw;
+  display: flex;
+  align-items: end;
 }
 
 .result p {
   color: var(--octonary-color);
+  width: 40%;
   font-size: 24px;
   font-weight: bold;
-  background: var(--primary-color);
-  border-radius: 1000px;
+  background: var(--secondary-color);
+  border-radius: 20px;
   padding: 10px;
+  text-align: center;
 }
 
 .incorrect {
   color: var(--septenary-color);
+}
+
+.intro-btn {
+  background: var(--senary-color);
+  color: var(--tertiary-color);
+  opacity: 0.8;
+}
+
+.intro-btn:hover {
+  background: var(--octonary-color);
+  opacity: 1;
+}
+.form-input {
+  opacity: 0.6;
+}
+
+.form-input:focus {
+  opacity: 1;
+}
+
+.final-score-overlay {
+  background: './assets/images/8-bit-space'
 }
