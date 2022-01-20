@@ -146,7 +146,8 @@ header {
 .result {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  order: 4;
   margin: 0.5vw 1.5vw;
 }
 
@@ -157,10 +158,6 @@ header {
   background: var(--primary-color);
   border-radius: 1000px;
   padding: 10px;
-}
-
-.correct {
-  color: var(--octonary-color);
 }
 
 .incorrect {
