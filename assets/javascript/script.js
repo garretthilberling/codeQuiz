@@ -250,7 +250,7 @@ var correctAnswer = function () {
 
   var fade = setInterval(function () {
     if (!correctText.style.opacity) {
-      $("#correct").fadeOut(500, function () {
+      $("#correct").fadeOut(700, function () {
         $(this).remove();
       });
     } else {
@@ -268,7 +268,7 @@ var incorrectAnswer = function () {
   answerSection.appendChild(incorrectText);
   var fade = setInterval(function () {
     if (!incorrectText.style.opacity) {
-      $("#incorrect").fadeOut(500, function () {
+      $("#incorrect").fadeOut(700, function () {
         $(this).remove();
       });
     } else {
@@ -294,7 +294,8 @@ var startQuiz = function (e) {
 
   const questionOne = document.createElement("span");
   questionOne.setAttribute("id", "question");
-  questionOne.innerHTML = "<p>1. Commonly used data types do <span class='emphasis'>NOT</span> include:</p>";
+  questionOne.innerHTML =
+    "<p>1. Commonly used data types do <span class='emphasis'>NOT</span> include:</p>";
   questionSection.appendChild(questionOne);
   window.questionOne = questionOne;
 
@@ -322,7 +323,8 @@ var questionTwoStart = function (e) {
   const questionTwo = document.createElement("span");
 
   questionTwo.setAttribute("id", "question");
-  questionTwo.innerHTML = "<p>2. The condition of an if / else statement is enclosed with ____________.</p>";
+  questionTwo.innerHTML =
+    "<p>2. The condition of an if / else statement is enclosed with ____________.</p>";
   questionSection.appendChild(questionTwo);
   window.questionTwo = questionTwo;
 
@@ -349,7 +351,8 @@ var questionThreeStart = function (e) {
   const questionThree = document.createElement("span");
 
   questionThree.setAttribute("id", "question");
-  questionThree.innerHTML = "<p>3. Arrays in JavaScript can be used to store _________.</p>";
+  questionThree.innerHTML =
+    "<p>3. Arrays in JavaScript can be used to store _________.</p>";
   questionSection.appendChild(questionThree);
   window.questionThree = questionThree;
 
@@ -376,7 +379,8 @@ var questionFourStart = function (e) {
   const questionFour = document.createElement("span");
 
   questionFour.setAttribute("id", "question");
-  questionFour.innerHTML = "<p>4. String values must be enclosed within __________ when being assigned to variables.</p>";
+  questionFour.innerHTML =
+    "<p>4. String values must be enclosed within __________ when being assigned to variables.</p>";
   questionSection.appendChild(questionFour);
   window.questionFour = questionFour;
 
@@ -403,7 +407,8 @@ var questionFiveStart = function (e) {
   const questionFive = document.createElement("span");
 
   questionFive.setAttribute("id", "question");
-  questionFive.innerHTML = "<p>5. A very useful tool used during development and debugging for printing content to the debugger is:</p>";
+  questionFive.innerHTML =
+    "<p>5. A very useful tool used during development and debugging for printing content to the debugger is:</p>";
   questionSection.appendChild(questionFive);
   window.questionFive = questionFive;
 
@@ -425,25 +430,14 @@ var questionFiveStart = function (e) {
   questionFiveIncorrect.addEventListener("click", endQuiz);
 };
 
-var endQuiz = function() {
+var endQuiz = function () {
   t = t;
   questionFive.remove();
   questionFiveAnswers.remove();
-
-}
+};
 
 generateBtn.addEventListener("click", generateName);
 
 submitBtn.addEventListener("click", submitName);
 
 startQuizBtn.addEventListener("click", startQuiz);
-
-
-// 
-// 
-// proceed.addEventListener("click", questionFive);
-// proceed.addEventListener("click", questionSix);
-// proceed.addEventListener("click", questionSeven);
-// proceed.addEventListener("click", questionEight);
-// proceed.addEventListener("click", questionNine);
-// proceed.addEventListener("click", questionTen);

@@ -45,9 +45,14 @@ header {
   background-color: var(--tertiary-color);
   color: var(--primary-color);
   text-align: center;
+  /* font-weight: bold; */
   border-radius: 10px;
   padding: 10px;
   margin: 0.5vw;
+}
+
+.container:hover {
+  color: var(--secondary-color);
 }
 
 .container h1 {
@@ -71,7 +76,7 @@ header {
 }
 
 .question-container {
-  background-color: rgb(177, 193, 192, .75);
+  background-color: rgb(177, 193, 192, 0.75);
   color: var(--primary-color);
   font-style: none;
   text-decoration: none;
@@ -84,6 +89,11 @@ header {
 
 .question-container:hover {
   background-color: rgb(177, 193, 192, 1);
+
+}
+
+.question-container p:hover{
+  color: var(--secondary-color);
 }
 
 .enter-username {
@@ -91,7 +101,7 @@ header {
 }
 
 .enter-username:hover {
-  color: var(--tertiary-color);
+  color: var(--secondary-color);
 }
 
 .emphasis {
@@ -127,6 +137,7 @@ header {
 
 .answer-container:hover {
   background-color: white;
+  color: var(--secondary-color);
 }
 
 .result {
@@ -147,7 +158,7 @@ header {
 }
 
 .incorrect {
-  color: var(--septenary-color);
+  color: var(--septenary-color) !important;
 }
 
 .intro-btn {
@@ -159,6 +170,7 @@ header {
 .intro-btn:hover {
   background: var(--octonary-color);
   opacity: 1;
+  color: var(--secondary-color);
 }
 .form-input {
   opacity: 0.6;
@@ -169,5 +181,5 @@ header {
 }
 
 .final-score-overlay {
-  background: './assets/images/8-bit-space'
+  background: "./assets/images/8-bit-space";
 }
