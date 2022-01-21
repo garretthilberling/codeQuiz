@@ -6,21 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code-Quiz!</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"> -->
   </head>
   <body>
-    <header>
+    <header id='title'>
       <div class="header-parent">
-        <div class="container header">
+        <div id='title-text' class="container header">
           <h1>Test Your Coding Knowledge!</h1>
         </div>
       </div>
     </header>
-    <section class="question">
+    <span>
+    <section id="question-section" class="question">
       <div class="question-parent">
         <div class="question-container">
           <ul class="highscore-timer-parent">
-            <li class="container high-scores">
-              <a href="">View high scores</a>
+            <li class="container select-hs">
+              <a href="#" id="high-score-btn">View high scores</a>
             </li>
 
             <li class="container timer">Time: <span id="timer"></span> </span></li>
@@ -69,10 +71,14 @@
           <button class="answer-container" id="start-quiz">Start Quiz</button>
         </li>
       </ul>
-      <!-- <div class="answer-parent result">
-        <p>good luck!</p>
-      </div> -->
     </section>
+    <section class="result-section">
+      <ul class="result-parent" id='result'>
+
+      </ul>
+
+    </section>
+  </span>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/javascript/script.js"></script>
   </body>

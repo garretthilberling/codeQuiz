@@ -10,7 +10,17 @@ var questionSection = document.querySelector("#insert-question");
 
 var answerSection = document.querySelector("#answer");
 
+var resultSection = document.querySelector("#result");
+
 var timerSection = document.querySelector("#timer");
+
+var clearQuestionSection = document.querySelector("#question-section");
+
+var titleSection = document.querySelector("#title");
+
+var titleText = document.querySelector("#title-text");
+
+var seeHighScoreBtn = document.querySelector("#high-score-btn")
 
 // var proceed = document.querySelector(
 //   "#answer-1, #answer-2, #answer-3, #answer-4"
@@ -156,13 +166,11 @@ var nameNumberArray = [
   "99",
 ];
 
+var seeHighScore = 0;
+
 var userName = ""; //will be replaced by the username input or by the name made by the generate button if it is accepted.
 
 var formEl = document.querySelector("#username-form");
-
-var nameFormHandler = function (event) {};
-
-// nameFormHandler();
 
 var generateName = function (e) {
   var randomWord =
@@ -185,11 +193,11 @@ var generateName = function (e) {
 };
 
 var goodLuckMessage = function () {
-  const goodLuckText = document.createElement("div");
-  goodLuckText.className = "answer-parent result";
-  goodLuckText.innerHTML = "<p>good luck, " + userName + "!</p>";
+  const goodLuckText = document.createElement("li");
+  goodLuckText.className = "result";
+  goodLuckText.innerHTML = "<p class='answer-container'>good luck, " + userName + "!</p>";
   goodLuckText.setAttribute("id", "good-luck");
-  answerSection.appendChild(goodLuckText);
+  resultSection.appendChild(goodLuckText);
   var fade = setInterval(function () {
     if (!goodLuckText.style.opacity) {
       $("#good-luck").fadeOut(3000, function () {
@@ -226,15 +234,17 @@ var submitName = function (e) {
 
 var startTimer = function () {
   var timeText = document.querySelector("#timer");
-  timeText.innerHTML = "120";
+  timeText.innerHTML = "5";
   var countDown = setInterval(displayTimer, 1000, timeText);
+  window.countDown = countDown; // I use this trick often to make the local variable global
 
   function displayTimer(element) {
     var t = element.innerHTML;
     if (t > 0) {
       element.innerHTML = parseInt(t) - 1;
     } else {
-      element.innerHTML = 0;
+      clearInterval(countDown);
+      endQuiz();
     }
     window.t = t;
     window.element = element;
@@ -242,11 +252,11 @@ var startTimer = function () {
 };
 
 var correctAnswer = function () {
-  const correctText = document.createElement("div");
-  correctText.className = "answer-parent result";
-  correctText.innerHTML = "<p>Correct!</p>";
+  const correctText = document.createElement("li");
+  correctText.className = "result";
+  correctText.innerHTML = "<p class='answer-container'>Correct!</p>";
   correctText.setAttribute("id", "correct");
-  answerSection.appendChild(correctText);
+  resultSection.appendChild(correctText);
 
   var fade = setInterval(function () {
     if (!correctText.style.opacity) {
@@ -260,16 +270,15 @@ var correctAnswer = function () {
 };
 
 var incorrectAnswer = function () {
-  const incorrectText = document.createElement("div");
-  incorrectText.className = "answer-parent result";
-  // incorrectText.firstElementChild
-  incorrectText.innerHTML = '<p class="incorrect">Incorrect</p>';
+  const incorrectText = document.createElement("li");
+  incorrectText.className = "result";
+  incorrectText.innerHTML = '<p class="answer-container"><span class="incorrect">Incorrect</span></p>';
   incorrectText.setAttribute("id", "incorrect");
-  answerSection.appendChild(incorrectText);
+  resultSection.appendChild(incorrectText);
   var fade = setInterval(function () {
     if (!incorrectText.style.opacity) {
       $("#incorrect").fadeOut(700, function () {
-        $(this).remove();
+        $(incorrectText).remove();
       });
     } else {
       clearInterval(fade);
@@ -278,20 +287,23 @@ var incorrectAnswer = function () {
   element.innerHTML = parseInt(t) - 10;
 };
 
-var startQuiz = function (e) {
-  if (userName === "") {
-    window.alert("You need to provide a valid name to proceed!");
-    return false;
-  } else {
-    startTimer();
-  }
+var removePageOne = function () {
   var firstPage = document.getElementById("question");
   firstPage.remove();
   var deleteForm = document.getElementById("username-form");
 
   deleteForm.remove();
   startQuizBtn.remove();
+}
 
+var startQuiz = function (e) {
+  if (userName === "") {
+    window.alert("You need to provide a valid name to proceed!");
+    return false;
+  } else {
+    startTimer();
+    removePageOne();
+  }
   const questionOne = document.createElement("span");
   questionOne.setAttribute("id", "question");
   questionOne.innerHTML =
@@ -302,19 +314,28 @@ var startQuiz = function (e) {
   const questionOneAnswers = document.createElement("span");
   questionOneAnswers.setAttribute("id", "answer");
   questionOneAnswers.innerHTML =
-    '<ul id="answer-parent" class="answer-parent"><button id="answer-1" class="answer-container">A. Strings</button></li> <li><button id="answer-2" class="answer-container">B. Booleans</button></li> <li><button id="answer-3" class="answer-container">C. Alerts</button></li> <li><button id="answer-4" class="answer-container">D. Numbers</button></li></ul>';
+    '<ul id="answer-parent" class="answer-parent"><li><button id="q-1-answer-1" class="answer-container">A. Strings</button></li> <li><button id="q-1-answer-2" class="answer-container">B. Booleans</button></li> <li><button id="q-1-answer-3" class="answer-container">C. Alerts</button></li> <li><button id="q-1-answer-4" class="answer-container">D. Numbers</button></li></ul>';
   answerSection.appendChild(questionOneAnswers);
   window.questionOneAnswers = questionOneAnswers;
 
-  var questionOneCorrect = document.querySelector("#answer-3");
+  var questionOneCorrect = document.querySelector("#q-1-answer-3");
   var questionOneIncorrect = document.querySelector(
-    "#answer-1, #answer-2, #answer-4"
+    "#q-1-answer-1, #q-1-answer-2, #q-1-answer-4"
   );
 
-  questionOneCorrect.addEventListener("click", correctAnswer);
+  // if (questionOneCorrect === true) {
+  //   correctAnswer();
+  //   questionTwoStart();
+  // } else if (questionOneIncorrect === true) {
+  //   incorrectAnswer();
+  //   questionTwoStart();
+  // }
+
   questionOneCorrect.addEventListener("click", questionTwoStart);
-  questionOneIncorrect.addEventListener("click", incorrectAnswer);
   questionOneIncorrect.addEventListener("click", questionTwoStart);
+  questionOneCorrect.addEventListener("click", correctAnswer);
+  questionOneIncorrect.addEventListener("click", incorrectAnswer);
+  
 };
 
 var questionTwoStart = function (e) {
@@ -331,19 +352,19 @@ var questionTwoStart = function (e) {
   const questionTwoAnswers = document.createElement("span");
   questionTwoAnswers.setAttribute("id", "answer");
   questionTwoAnswers.innerHTML =
-    '<ul id="answer-parent" class="answer-parent"><li><button id="answer-1" class="answer-container">A. Parenthesis</button></li> <li><button id="answer-2" class="answer-container">B. Quotes</button></li> <li><button id="answer-3" class="answer-container">C. Curly brackets</button></li> <li><button id="answer-4" class="answer-container">D. Square Brackets</button></li></ul>';
+    '<ul id="answer-parent" class="answer-parent"><li><button id="q-2-answer-1" class="answer-container">A. Parenthesis</button></li> <li><button id="q-2-answer-2" class="answer-container">B. Quotes</button></li> <li><button id="q-2-answer-3" class="answer-container">C. Curly brackets</button></li> <li><button id="q-2-answer-4" class="answer-container">D. Square Brackets</button></li></ul>';
   answerSection.appendChild(questionTwoAnswers);
   window.questionTwoAnswers = questionTwoAnswers;
 
-  var questionTwoCorrect = document.querySelector("#answer-1");
+  var questionTwoCorrect = document.querySelector("#q-2-answer-1");
   var questionTwoIncorrect = document.querySelector(
-    "#answer-2, #answer-3, #answer-4"
+    "#q-2-answer-2, #q-2-answer-3, #q-2-answer-4"
   );
 
+  questionTwoCorrect.addEventListener("click", questionThreeStart);
+  questionTwoIncorrect.addEventListener("click", questionThreeStart);
   questionTwoCorrect.addEventListener("click", correctAnswer);
-  questionTwoCorrect.addEventListener("click", questionThreeStart);
   questionTwoIncorrect.addEventListener("click", incorrectAnswer);
-  questionTwoCorrect.addEventListener("click", questionThreeStart);
 };
 var questionThreeStart = function (e) {
   questionTwo.remove();
@@ -359,19 +380,19 @@ var questionThreeStart = function (e) {
   const questionThreeAnswers = document.createElement("span");
   questionThreeAnswers.setAttribute("id", "answer");
   questionThreeAnswers.innerHTML =
-    '<ul id="answer-parent" class="answer-parent"><li><button id="answer-1" class="answer-container">A. Numbers and strings</button></li> <li><button id="answer-2" class="answer-container">B. Other arrays</button></li> <li><button id="answer-3" class="answer-container">C. Booleans</button></li> <li><button id="answer-4" class="answer-container">D. All of the above!</button></li></ul>';
+    '<ul id="answer-parent" class="answer-parent"><li><button id="q-3-answer-1" class="answer-container">A. Numbers and strings</button></li> <li><button id="q-3-answer-2" class="answer-container">B. Other arrays</button></li> <li><button id="q-3-answer-3" class="answer-container">C. Booleans</button></li> <li><button id="q-3-answer-4" class="answer-container">D. All of the above!</button></li></ul>';
   answerSection.appendChild(questionThreeAnswers);
   window.questionThreeAnswers = questionThreeAnswers;
 
-  var questionThreeCorrect = document.querySelector("#answer-4");
+  var questionThreeCorrect = document.querySelector("#q-3-answer-4");
   var questionThreeIncorrect = document.querySelector(
-    "#answer-1, #answer-2, #answer-3"
+    "#q-3-answer-1, #q-3-answer-2, #q-3-answer-3"
   );
 
-  questionThreeCorrect.addEventListener("click", correctAnswer);
   questionThreeCorrect.addEventListener("click", questionFourStart);
-  questionThreeIncorrect.addEventListener("click", incorrectAnswer);
   questionThreeIncorrect.addEventListener("click", questionFourStart);
+  questionThreeCorrect.addEventListener("click", correctAnswer);
+  questionThreeIncorrect.addEventListener("click", incorrectAnswer);
 };
 var questionFourStart = function (e) {
   questionThree.remove();
@@ -387,19 +408,19 @@ var questionFourStart = function (e) {
   const questionFourAnswers = document.createElement("span");
   questionFourAnswers.setAttribute("id", "answer");
   questionFourAnswers.innerHTML =
-    '<ul id="answer-parent" class="answer-parent"><li><button id="answer-1" class="answer-container">A. Commas</button></li> <li><button id="answer-2" class="answer-container">B. Quotes</button></li> <li><button id="answer-3" class="answer-container">C. Parenthesis</button></li> <li><button id="answer-4" class="answer-container">D. Curly brackets</button></li></ul>';
+    '<ul id="answer-parent" class="answer-parent"><li><button id="q-4-answer-1" class="answer-container">A. Commas</button></li> <li><button id="q-4-answer-2" class="answer-container">B. Quotes</button></li> <li><button id="q-4-answer-3" class="answer-container">C. Parenthesis</button></li> <li><button id="q-4-answer-4" class="answer-container">D. Curly brackets</button></li></ul>';
   answerSection.appendChild(questionFourAnswers);
   window.questionFourAnswers = questionFourAnswers;
 
-  var questionFourCorrect = document.querySelector("#answer-4");
+  var questionFourCorrect = document.querySelector("#q-4-answer-4");
   var questionFourIncorrect = document.querySelector(
-    "#answer-1, #answer-2, #answer-3"
+    "#q-4-answer-1, #q-4-answer-2, #q-4-answer-3"
   );
 
   questionFourCorrect.addEventListener("click", correctAnswer);
+  questionFourIncorrect.addEventListener("click", questionFiveStart);
   questionFourCorrect.addEventListener("click", questionFiveStart);
   questionFourIncorrect.addEventListener("click", incorrectAnswer);
-  questionFourIncorrect.addEventListener("click", questionFiveStart);
 };
 var questionFiveStart = function (e) {
   questionFour.remove();
@@ -415,29 +436,53 @@ var questionFiveStart = function (e) {
   const questionFiveAnswers = document.createElement("span");
   questionFiveAnswers.setAttribute("id", "answer");
   questionFiveAnswers.innerHTML =
-    '<ul id="answer-parent" class="answer-parent"><li><button id="answer-1" class="answer-container">A. JavaScript</button></li> <li><button id="answer-2" class="answer-container">B. Terminal/bash</button></li> <li><button id="answer-3" class="answer-container">C. For loops</button></li> <li><button id="answer-4" class="answer-container">D. Console log</button></li></ul>';
+    '<ul id="answer-parent" class="answer-parent"><li><button id="q-5-answer-1" class="answer-container">A. JavaScript</button></li> <li><button id="q-5-answer-2" class="answer-container">B. Terminal/bash</button></li> <li><button id="q-5-answer-3" class="answer-container">C. For loops</button></li> <li><button id="q-5-answer-4" class="answer-container">D. Console log</button></li></ul>';
   answerSection.appendChild(questionFiveAnswers);
   window.questionFiveAnswers = questionFiveAnswers;
 
-  var questionFiveCorrect = document.querySelector("#answer-4");
+  var questionFiveCorrect = document.querySelector("#q-5-answer-4");
   var questionFiveIncorrect = document.querySelector(
-    "#answer-1, #answer-2, #answer-3"
+    "#q-5-answer-1, #q-5-answer-2, #q-5-sanswer-3"
   );
 
-  questionFiveCorrect.addEventListener("click", correctAnswer);
   questionFiveCorrect.addEventListener("click", endQuiz);
-  questionFiveIncorrect.addEventListener("click", incorrectAnswer);
   questionFiveIncorrect.addEventListener("click", endQuiz);
+  questionFiveCorrect.addEventListener("click", correctAnswer);
+  questionFiveIncorrect.addEventListener("click", incorrectAnswer);
 };
 
 var endQuiz = function () {
-  t = t;
-  questionFive.remove();
-  questionFiveAnswers.remove();
+  if (seeHighScore > 0) {
+    removePageOne();
+  } else {
+    clearInterval(countDown);
+    clearQuestionSection.remove();
+    answerSection.remove();
+    titleText.remove();
+  }
+  
+  const highScoreTitle = document.createElement("span");
+  highScoreTitle.className = "high-score-container";
+  highScoreTitle.innerHTML = "<header class='hs-continue-bg margin-zero'><ul class='highscore-timer-parent margin-zero'><li class='high-score-container high-scores margin-zero'><button id='hs-btn-1' class='high-score-button margin-zero'>Try again</button></li><li><h1>High Scores</h1></li><li class='high-score-container high-scores margin-zero'><button id='hs-btn-1' class='high-score-button margin-zero'>Clear scoreboard</button></li></ul>";
+  highScoreTitle.setAttribute("id", "high-score-title");
+  titleSection.appendChild(highScoreTitle);
+
+  document.body.style.backgroundImage = "url('./assets/images/8-bit-space.jpg')";
+  
 };
+
+var openScoreboard = function (e) {
+  seeHighScore = seeHighScore + 1;
+}
 
 generateBtn.addEventListener("click", generateName);
 
 submitBtn.addEventListener("click", submitName);
 
 startQuizBtn.addEventListener("click", startQuiz);
+
+seeHighScoreBtn.addEventListener("click", openScoreboard);
+
+seeHighScoreBtn.addEventListener("click", endQuiz);
+
+
