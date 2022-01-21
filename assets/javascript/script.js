@@ -275,16 +275,16 @@ var correctAnswer = function () {
 };
 
 var incorrectAnswer = function () {
-  const incorrectText = document.createElement("li");
-  incorrectText.className = "result";
-  incorrectText.innerHTML =
-    '<p class="answer-container"><span class="incorrect">Incorrect</span></p>';
+  const incorrectText = document.createElement("div");
+  incorrectText.className = "answer-parent result";
+  // incorrectText.firstElementChild
+  incorrectText.innerHTML = '<p class="incorrect">Incorrect</p>';
   incorrectText.setAttribute("id", "incorrect");
-  resultSection.appendChild(incorrectText);
+  answerSection.appendChild(incorrectText);
   var fade = setInterval(function () {
     if (!incorrectText.style.opacity) {
-      $("#incorrect").fadeOut(700, function () {
-        $(incorrectText).remove();
+      $("#incorrect").fadeOut(500, function () {
+        $(this).remove();
       });
     } else {
       clearInterval(fade);
