@@ -247,3 +247,12 @@ header {
 .margin-zero {
   margin: 0;
 }
+
+.high-score-board {
+  font-size: 18px;
+  color: var(--quaternary-color);
+  text-align: center;
+  background: transparent !important;
+  list-style: none;
+  
+}

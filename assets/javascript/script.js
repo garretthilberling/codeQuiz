@@ -20,7 +20,9 @@ var titleSection = document.querySelector("#title");
 
 var titleText = document.querySelector("#title-text");
 
-var seeHighScoreBtn = document.querySelector("#high-score-btn")
+var seeHighScoreBtn = document.querySelector("#high-score-btn");
+
+var highScoreBoardSection = document.querySelector("#high-score-board")
 
 // var proceed = document.querySelector(
 //   "#answer-1, #answer-2, #answer-3, #answer-4"
@@ -172,6 +174,8 @@ var userName = ""; //will be replaced by the username input or by the name made 
 
 var formEl = document.querySelector("#username-form");
 
+const highScores = JSON.parse(localStorage.getItem("highScores")) || []; //the values from scores will be pushed into this array. I use || to tell JavaScript if nothing has been pushed into highScores, then create the empty array.
+
 var generateName = function (e) {
   var randomWord =
     nameWordArray[Math.floor(Math.random() * nameWordArray.length)];
@@ -195,7 +199,8 @@ var generateName = function (e) {
 var goodLuckMessage = function () {
   const goodLuckText = document.createElement("li");
   goodLuckText.className = "result";
-  goodLuckText.innerHTML = "<p class='answer-container'>good luck, " + userName + "!</p>";
+  goodLuckText.innerHTML =
+    "<p class='answer-container'>good luck, " + userName + "!</p>";
   goodLuckText.setAttribute("id", "good-luck");
   resultSection.appendChild(goodLuckText);
   var fade = setInterval(function () {
@@ -272,7 +277,8 @@ var correctAnswer = function () {
 var incorrectAnswer = function () {
   const incorrectText = document.createElement("li");
   incorrectText.className = "result";
-  incorrectText.innerHTML = '<p class="answer-container"><span class="incorrect">Incorrect</span></p>';
+  incorrectText.innerHTML =
+    '<p class="answer-container"><span class="incorrect">Incorrect</span></p>';
   incorrectText.setAttribute("id", "incorrect");
   resultSection.appendChild(incorrectText);
   var fade = setInterval(function () {
@@ -294,7 +300,7 @@ var removePageOne = function () {
 
   deleteForm.remove();
   startQuizBtn.remove();
-}
+};
 
 var startQuiz = function (e) {
   if (userName === "") {
@@ -335,7 +341,6 @@ var startQuiz = function (e) {
   questionOneIncorrect.addEventListener("click", questionTwoStart);
   questionOneCorrect.addEventListener("click", correctAnswer);
   questionOneIncorrect.addEventListener("click", incorrectAnswer);
-  
 };
 
 var questionTwoStart = function (e) {
@@ -451,6 +456,21 @@ var questionFiveStart = function (e) {
   questionFiveIncorrect.addEventListener("click", incorrectAnswer);
 };
 
+var storeScore = function () {
+   const scores = {
+    score: t,
+    name: userName
+  }; window.scores = scores;
+  highScores.push(scores);
+  highScores.sort((a, b) => b.scores - a.scores); //a cool way to sort from largest to smallest, using the value of scores and the built in sort function. in an array of [1,2,3] 2 would correspond to b. 
+  highScores.splice(10); //only displays 10 scores at a time (and only keeps 10 scores in the array)
+  localStorage.setItem("highScores", JSON.stringify(highScores)); //save as a string.
+
+  
+
+  console.log(highScores);
+};
+
 var endQuiz = function () {
   if (seeHighScore > 0) {
     removePageOne();
@@ -459,21 +479,31 @@ var endQuiz = function () {
     clearQuestionSection.remove();
     answerSection.remove();
     titleText.remove();
+    storeScore();
   }
-  
+
   const highScoreTitle = document.createElement("span");
   highScoreTitle.className = "high-score-container";
-  highScoreTitle.innerHTML = "<header class='hs-continue-bg margin-zero'><ul class='highscore-timer-parent margin-zero'><li class='high-score-container high-scores margin-zero'><button id='hs-btn-1' class='high-score-button margin-zero'>Try again</button></li><li><h1>High Scores</h1></li><li class='high-score-container high-scores margin-zero'><button id='hs-btn-1' class='high-score-button margin-zero'>Clear scoreboard</button></li></ul>";
+  highScoreTitle.innerHTML =
+    "<header class='hs-continue-bg margin-zero'><ul class='highscore-timer-parent margin-zero'><li class='high-score-container high-scores margin-zero'><button id='hs-btn-1' class='high-score-button margin-zero'>Try again</button></li><li><h1>High Scores</h1></li><li class='high-score-container high-scores margin-zero'><button id='hs-btn-1' class='high-score-button margin-zero'>Clear scoreboard</button></li></ul>";
   highScoreTitle.setAttribute("id", "high-score-title");
   titleSection.appendChild(highScoreTitle);
 
-  document.body.style.backgroundImage = "url('./assets/images/8-bit-space.jpg')";
-  
+  const highScoreBoard = document.createElement("ul");
+  highScoreBoard.className = "high-score-board";
+  highScores.map(scores => {
+    return '<li class="high-score-board">${scores.name}-${scores.score}</li>'
+  }).join("");
+  // highScoreBoard.setAttribute("id", "high-score-board");
+  // highScoreBoardSection.appendChild(highScoreBoard);
+
+  document.body.style.backgroundImage =
+    "url('./assets/images/8-bit-space.jpg')";
 };
 
 var openScoreboard = function (e) {
   seeHighScore = seeHighScore + 1;
-}
+};
 
 generateBtn.addEventListener("click", generateName);
 
@@ -484,5 +514,3 @@ startQuizBtn.addEventListener("click", startQuiz);
 seeHighScoreBtn.addEventListener("click", openScoreboard);
 
 seeHighScoreBtn.addEventListener("click", endQuiz);
-
-
