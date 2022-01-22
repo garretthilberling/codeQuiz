@@ -226,13 +226,15 @@ header {
 
 .high-score-container {
   text-align: center;
-  border-radius: 10px;
-  padding: 10px;
+  /* border-radius: 10px;
+  padding: 10px; */
+  background: transparent !important;
   /* margin: 0.5vw; */
 }
 
 .hs-continue-bg {
   padding: 20px 35px;
+  margin: 20px;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -249,7 +251,8 @@ header {
 }
 
 .high-score-board {
-  font-size: 18px;
+  font-size: 32px;
+  padding: 10px;
   color: var(--quaternary-color);
   text-align: center;
   background: transparent !important;
