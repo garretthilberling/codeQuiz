@@ -174,8 +174,6 @@ var userName = ""; //will be replaced by the username input or by the name made 
 
 var formEl = document.querySelector("#username-form");
 
-
-
 var generateName = function (e) {
   var randomWord =
     nameWordArray[Math.floor(Math.random() * nameWordArray.length)];
@@ -444,23 +442,12 @@ var questionFiveStart = function (e) {
   questionFiveIncorrect.addEventListener("click", incorrectAnswer);
 };
 
-// var storeScore = function () {
-//   // window.scores = scores;
-//   highScores.push(scores);
-//   highScores.sort((a, b) => b.scores - a.scores); //a cool way to sort from largest to smallest, using the value of scores and the built in sort function. in an array of [1,2,3] 2 would correspond to b.
-//   highScores.splice(10); //only displays 10 scores at a time (and only keeps 10 scores in the array)
-//   localStorage.setItem("highScores", JSON.stringify(highScores)); //save as a string.
-
-//   console.log(highScores);
-// };
-
 var endQuiz = function () {
   const highScores = JSON.parse(localStorage.getItem("highScores")) || []; //the values from scores will be pushed into this array. I use || to tell JavaScript if nothing has been pushed into highScores, then create the empty array.
   const scores = {
     score: t,
     name: userName,
   };
-  
 
   if (seeHighScore > 0) {
     removePageOne();
@@ -471,40 +458,31 @@ var endQuiz = function () {
     titleSection.remove();
     resultSection.remove();
     highScores.push(scores);
-    highScores.sort((a, b) => b.score - a.score) //a cool way to sort from largest to smallest, using the value of scores and the built in sort function. in an array of [1,2,3] 2 would correspond to b.
+    highScores.sort((a, b) => b.score - a.score); //a cool way to sort from largest to smallest, using the value of scores and the built in sort function. in an array of [1,2,3] 2 would correspond to b.
     highScores.splice(10); //only displays 10 scores at a time (and only keeps 10 scores in the array)
     localStorage.setItem("highScores", JSON.stringify(highScores)); //save as a string.
     console.log(highScores, scores);
-    
-  } 
+  }
 
   const highScoreTitle = document.createElement("div");
   highScoreTitle.className = "high-score-container";
   highScoreTitle.innerHTML =
-    "<header class='hs-continue-bg margin-zero'><ul class='highscore-timer-parent margin-zero'><li class='high-score-container high-scores margin-zero'><button id='hs-btn-1' class='high-score-button margin-zero'>Try again</button></li><li><h1>High Scores</h1></li><li class='high-score-container high-scores margin-zero'><button id='hs-btn-2' class='high-score-button margin-zero'>Clear scoreboard</button></li></ul>";
+    "<header class='hs-continue-bg margin-zero'><ul class='highscore-timer-parent margin-zero'><li class='high-score-container high-scores margin-zero'><button id='hs-btn-1' class='high-score-button margin-zero' onclick='tryAgain();'>Try again</button></li><li><h1>High Scores</h1></li><li class='high-score-container high-scores margin-zero'><button id='hs-btn-2' class='high-score-button margin-zero'>Clear scoreboard</button></li></ul>";
   highScoreTitle.setAttribute("id", "high-score-title");
   replaceTitleSection.appendChild(highScoreTitle);
 
   const highScoreBoard = document.createElement("ul");
   highScoreBoard.className = "high-score-board";
-  highScoreBoard.innerHTML = 
-  highScores
-    .map(scores => {
+  highScoreBoard.innerHTML = highScores
+    .map((scores) => {
       return `<li class="high-score-board margin-zero"> ${scores.name} : <span class='emphasis'>${scores.score}</span></li>`;
-        })
+    })
     .join("");
   highScoreBoard.setAttribute("id", "high-score-board");
   highScoreBoardSection.appendChild(highScoreBoard);
 
-  // document.querySelector("#high-score-title")
-  // .className = 'hs-continue-bg';
-  // .style.backgroundColor = 'transparent';
-   
   document.body.style.backgroundImage =
     "url('./assets/images/8-bit-space.jpg')";
-
-  // clearScoreBoardBtn.addEventListener("click", clearScoreBoard);
-  // tryAgainBtn.addEventListener("click", tryAgain);
 };
 
 var openScoreboard = function (e) {
@@ -516,7 +494,8 @@ var clearScoreBoard = function (e) {
 };
 
 var tryAgain = function (e) {
-  window.location.assign("..");
+  window.location.reload();
+  console.log('tab func')
 };
 
 generateBtn.addEventListener("click", generateName);
@@ -529,4 +508,7 @@ seeHighScoreBtn.addEventListener("click", openScoreboard);
 
 seeHighScoreBtn.addEventListener("click", endQuiz);
 
-// tryAgainBtn.addEventListener("click", tryAgain);
+if (tryAgainBtn) {
+  console.log("tab");
+  tryAgainBtn.addEventListener("click", tryAgain);
+}
