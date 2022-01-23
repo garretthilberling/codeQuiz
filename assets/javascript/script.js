@@ -41,11 +41,14 @@ var nameWordArray = [
   "cherry",
   "era",
   "queen",
+  "babe",
   "coast",
   "echo",
   "favourite",
   "big-brain",
   "boywonder",
+  "reptar",
+  "goodnoodle"
 ];
 var nameColorArray = [
   "red",
@@ -63,6 +66,11 @@ var nameColorArray = [
   "teal",
   "olive",
   "aqua",
+  "ruby",
+  "sapphire",
+  "diamond",
+  "pearl",
+  "emerald"
 ];
 var nameNumberArray = [
   "1",
