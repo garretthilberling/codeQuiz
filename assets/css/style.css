@@ -63,7 +63,6 @@ header {
   text-align: center;
   border-radius: 10px;
   padding: 10px;
-  /* margin: 0.5vw; */
 }
 
 .container:hover {
@@ -77,6 +76,10 @@ header {
 .container a {
   text-decoration: none;
   color: var(--primary-color);
+}
+
+.container a:hover {
+  color: var(--secondary-color);
 }
 
 .question {
@@ -141,12 +144,10 @@ header {
   color: var(--primary-color);
   font-style: none;
   text-decoration: none;
-  /* text-align: center; */
   font-size: 24px;
   border-radius: 10px;
   padding: 10px;
   margin: 5%;
-  /* flex: 1; */
 }
 
 .answer-container:hover {
@@ -161,20 +162,21 @@ header {
 .result-parent {
   list-style: none;
   display: flex;
-  justify-content: center;
-  align-items: top;
+  flex-direction: column;
+  align-items: center;
+  
 }
 
 .result {
-  margin: 0.5vw 1.5vw;
+  margin: 0.5vw;
 }
 
 .result p {
   color: var(--octonary-color);
-  width: 40%;
+  background-color: var(--secondary-color);
   font-size: 24px;
   font-weight: bold;
-  background: transparent !important;
+  display: inline-block;
   border-radius: 20px;
   padding: 10px;
   text-align: center;
@@ -203,21 +205,13 @@ header {
   opacity: 1;
 }
 
-/* .high-score-page {
-  color: var(--quaternary-color);
-} */
-
 .high-score-button {
   background: var(--quaternary-color);
   color: var(--primary-color);
-  /* max-width: 100vw; */
   font-size: 18px;
   display: flex;
   justify-content: center;
-  /* flex-wrap: wrap; */
-  /* margin: 0.5vw; */
   list-style: none;
-  /* background-color: transparent !important; */
 }
 
 .high-score-button:hover {
@@ -226,10 +220,7 @@ header {
 
 .high-score-container {
   text-align: center;
-  /* border-radius: 10px;
-  padding: 10px; */
   background: transparent !important;
-  /* margin: 0.5vw; */
 }
 
 .hs-continue-bg {

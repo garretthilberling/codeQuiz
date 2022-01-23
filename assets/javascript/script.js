@@ -51,11 +51,9 @@ var nameColorArray = [
   "red",
   "green",
   "blue",
-  "yellow",
   "orange",
   "purple",
   "pink",
-  "brown",
   "gray",
   "mango",
   "maroon",
@@ -172,6 +170,8 @@ var seeHighScore = 0;
 
 var userName = ""; //will be replaced by the username input or by the name made by the generate button if it is accepted.
 
+var t = "";
+
 var formEl = document.querySelector("#username-form");
 
 var generateName = function (e) {
@@ -195,17 +195,19 @@ var generateName = function (e) {
 };
 
 var goodLuckMessage = function () {
+  var replaceMessage = 0;
   const goodLuckText = document.createElement("li");
   goodLuckText.className = "result";
   goodLuckText.innerHTML =
     "<p class='answer-container'>good luck, " + userName + "!</p>";
   goodLuckText.setAttribute("id", "good-luck");
-  resultSection.appendChild(goodLuckText);
+  resultSection.insertBefore(goodLuckText, resultSection.firstChild);
   var fade = setInterval(function () {
     if (!goodLuckText.style.opacity) {
       $("#good-luck").fadeOut(3000, function () {
         $(this).remove();
       });
+      replaceMessage = 1;
     } else {
       clearInterval(fade);
     }
@@ -233,21 +235,18 @@ var submitName = function (e) {
 
 var startTimer = function () {
   var timeText = document.querySelector("#timer");
-  timeText.innerHTML = "5";
+  timeText.innerHTML = "3";
   var countDown = setInterval(displayTimer, 1000, timeText);
   window.countDown = countDown; // I use this trick often to make the local variable global
 
   function displayTimer(element) {
-    var t = element.innerHTML;
+    t = element.innerHTML;
     if (t > 0) {
       element.innerHTML = parseInt(t) - 1;
     } else {
-      // element.innerHTML = 0;
       clearInterval(countDown);
       endQuiz();
     }
-    window.t = t;
-    window.element = element;
   }
 };
 
@@ -285,6 +284,7 @@ var incorrectAnswer = function () {
     }
   });
   element.innerHTML = parseInt(t) - 10;
+  console.log(t - 10);
 };
 
 var removePageOne = function () {
@@ -451,23 +451,26 @@ var endQuiz = function () {
 
   if (seeHighScore > 0) {
     removePageOne();
+  } else if (seeHighScore < 0) {
+    console.log("score was not saved.")
   } else {
     clearInterval(countDown);
-    clearQuestionSection.remove();
-    answerSection.remove();
-    titleSection.remove();
-    resultSection.remove();
+
     highScores.push(scores);
     highScores.sort((a, b) => b.score - a.score); //a cool way to sort from largest to smallest, using the value of scores and the built in sort function. in an array of [1,2,3] 2 would correspond to b.
     highScores.splice(10); //only displays 10 scores at a time (and only keeps 10 scores in the array)
     localStorage.setItem("highScores", JSON.stringify(highScores)); //save as a string.
     console.log(highScores, scores);
   }
+  clearQuestionSection.remove();
+  answerSection.remove();
+  titleSection.remove();
+  resultSection.remove();
 
   const highScoreTitle = document.createElement("div");
   highScoreTitle.className = "high-score-container";
   highScoreTitle.innerHTML =
-    "<header class='hs-continue-bg margin-zero'><ul class='highscore-timer-parent margin-zero'><li class='high-score-container high-scores margin-zero'><button id='hs-btn-1' class='high-score-button margin-zero' onclick='tryAgain();'>Try again</button></li><li><h1>High Scores</h1></li><li class='high-score-container high-scores margin-zero'><button id='hs-btn-2' class='high-score-button margin-zero'>Clear scoreboard</button></li></ul>";
+    "<header class='hs-continue-bg margin-zero'><ul class='highscore-timer-parent margin-zero'><li class='high-score-container high-scores margin-zero'><button id='hs-btn-1' class='high-score-button margin-zero' onclick='tryAgain();'>Try again</button></li><li><h1>High Scores</h1></li><li class='high-score-container high-scores margin-zero'><button id='hs-btn-2' class='high-score-button margin-zero' onclick='clearScoreBoard();'>Clear scoreboard</button></li></ul>";
   highScoreTitle.setAttribute("id", "high-score-title");
   replaceTitleSection.appendChild(highScoreTitle);
 
@@ -486,16 +489,20 @@ var endQuiz = function () {
 };
 
 var openScoreboard = function (e) {
-  seeHighScore = seeHighScore + 1;
+  if (t) {
+    seeHighScore = -1;
+  } else {
+    seeHighScore = 1;
+  }
 };
 
 var clearScoreBoard = function (e) {
-  highScores = [];
+  window.localStorage.clear();
+  highScoreBoardSection.remove();
 };
 
 var tryAgain = function (e) {
   window.location.reload();
-  console.log('tab func')
 };
 
 generateBtn.addEventListener("click", generateName);
@@ -509,6 +516,9 @@ seeHighScoreBtn.addEventListener("click", openScoreboard);
 seeHighScoreBtn.addEventListener("click", endQuiz);
 
 if (tryAgainBtn) {
-  console.log("tab");
   tryAgainBtn.addEventListener("click", tryAgain);
+}
+
+if (clearScoreBoardBtn) {
+  clearScoreBoardBtn.addEventListener("click", clearScoreBoard);
 }
