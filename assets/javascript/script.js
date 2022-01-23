@@ -453,7 +453,7 @@ var endQuiz = function () {
   if (seeHighScore > 0) {
     removePageOne();
   } else if (seeHighScore < 0) {
-    console.log("score was not saved.")
+    console.log("score was not saved.");
   } else {
     clearInterval(countDown);
 
@@ -491,9 +491,9 @@ var endQuiz = function () {
 
 var openScoreboard = function (e) {
   if (t) {
-    seeHighScore = -1;
+    seeHighScore = -1; //If the timer has been created seeHighScore will be < 0. I use this in the if/else statement in endQuiz to tell the function where we are in the quiz.
   } else {
-    seeHighScore = 1;
+    seeHighScore = 1; //seeHighScore > 0 tells us we are accessing the scoreboard from the title page.
   }
 };
 
