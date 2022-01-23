@@ -345,7 +345,7 @@ var questionTwoStart = function (e) {
 
   questionTwo.setAttribute("id", "question");
   questionTwo.innerHTML =
-    "<p>2. The condition of an if / else statement is enclosed with ____________.</p>";
+    "<p>2. The <span class='emphasis'>condition</span> of an if / else statement is enclosed with ____________.</p>";
   questionSection.appendChild(questionTwo);
   window.questionTwo = questionTwo;
 
@@ -373,7 +373,7 @@ var questionThreeStart = function (e) {
 
   questionThree.setAttribute("id", "question");
   questionThree.innerHTML =
-    "<p>3. Arrays in JavaScript can be used to store _________.</p>";
+    "<p>3. <span class='emphasis'>Arrays</span> in JavaScript can be used to store _________.</p>";
   questionSection.appendChild(questionThree);
   window.questionThree = questionThree;
 
@@ -401,7 +401,7 @@ var questionFourStart = function (e) {
 
   questionFour.setAttribute("id", "question");
   questionFour.innerHTML =
-    "<p>4. String values must be enclosed within __________ when being assigned to variables.</p>";
+    "<p>4. <span class='emphasis'>String values</span> must be enclosed within __________ when being assigned to variables.</p>";
   questionSection.appendChild(questionFour);
   window.questionFour = questionFour;
 
@@ -429,7 +429,7 @@ var questionFiveStart = function (e) {
 
   questionFive.setAttribute("id", "question");
   questionFive.innerHTML =
-    "<p>5. A very useful tool used during development and debugging for printing content to the debugger is:</p>";
+    "<p>5. A very useful tool used during <span class='emphasis'>development</span> and <span class='emphasis'>debugging</span> for printing content to the debugger is:</p>";
   questionSection.appendChild(questionFive);
   window.questionFive = questionFive;
 
