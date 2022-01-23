@@ -235,7 +235,7 @@ var submitName = function (e) {
 
 var startTimer = function () {
   var timeText = document.querySelector("#timer");
-  timeText.innerHTML = "3";
+  timeText.innerHTML = "100";
   var countDown = setInterval(displayTimer, 1000, timeText);
   window.countDown = countDown; // I use this trick often to make the local variable global
 
