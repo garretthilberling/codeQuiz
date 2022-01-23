@@ -141,7 +141,7 @@ header {
 
 .answer-container {
   background-color: var(--senary-color);
-  color: var(--primary-color);
+  color: var(--tertiary-color);
   font-style: none;
   text-decoration: none;
   font-size: 24px;

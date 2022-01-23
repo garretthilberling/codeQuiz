@@ -241,6 +241,7 @@ var startTimer = function () {
 
   function displayTimer(element) {
     t = element.innerHTML;
+    window.element = element;
     if (t > 0) {
       element.innerHTML = parseInt(t) - 1;
     } else {
