@@ -173,7 +173,7 @@ header {
 
 .result p {
   color: var(--octonary-color);
-  background-color: var(--secondary-color);
+  background-color: var(--tertiary-color);
   font-size: 24px;
   font-weight: bold;
   display: inline-block;
