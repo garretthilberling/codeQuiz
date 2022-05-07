@@ -3,7 +3,7 @@
 ## Description
 codeQuiz is an application where users engage in a timed quiz in which wrong answers deduct points from the timer and at the end you can store your name and score- the score being the remaining time left. The languages used to build this application are HTML, CSS, and most importantly, JavaScript.
 
-<img src="./public/img/application-screenshot.PNG?raw=true" width="1000">
+<img src="./assets/img/application-screenshot.PNG?raw=true" width="1000">
 The highscores screen completely changes visually to a retro video game inspired scoreboard (with an 8bit outerspace background) that displays usernames and scores ranked by highest score.
 
 ## Installation
